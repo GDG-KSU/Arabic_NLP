@@ -1,0 +1,20 @@
+name: super-linter
+on:
+  pull_request:
+    branches: [ "main" ]
+jobs:
+  lint-codebase:
+    name: lint code base
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 
+      - name: run gitHub super-linter
+        uses: super-linter/super-linter@v5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DEFAULT_BRANCH: main
+          VALIDATE_ALL_CODEBASE: false
+          VALIDATE_MARKDOWN: false
