@@ -1,6 +1,6 @@
-import pandas as pd
 import re
 
+import pandas as pd
 
 try:
     df = pd.read_csv("data.csv", index_col="Name", encoding="utf-8-sig")
