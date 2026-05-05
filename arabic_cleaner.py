@@ -1,5 +1,5 @@
-import re
 import pyarabic.araby as araby
+import re
 
 def clean_arabic_text(text):
     text = araby.strip_tashkeel(text)
