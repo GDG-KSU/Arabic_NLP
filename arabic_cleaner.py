@@ -1,5 +1,4 @@
 import re
-import sys
 
 import pyarabic.araby as araby
 
@@ -16,19 +15,19 @@ def clean_arabic_text(text):
 
 
 def main():
-    """Main."""
+    """Main function."""
     try:
-        with open("input.txt", "r", encoding="utf-8") as file:
+        with open("NLP.txt", "r", encoding="utf-8") as file:
             user_text = file.read()
         result = clean_arabic_text(user_text)
         if result and len(result) >= 50:
             print(f"Success! Processed {len(result)} words.")
-            print("Cleaned Tokens:", result)
+            print(result)
         else:
             count = len(result) if result else 0
-            print(f"Warning: Text too short ({count} words). Min 50 required.")
+            print(f"Warning: Too short ({count} words).")
     except FileNotFoundError:
-        print("Error: Please create 'input.txt' first.")
+        print("Error: NLP.txt not found.")
 
 
 if __name__ == "__main__":
