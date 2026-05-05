@@ -5,7 +5,7 @@ import pyarabic.araby as araby
 
 
 def clean_arabic_text(text):
-    """Clean Arabic text."""
+    """Clean text."""
     text = araby.strip_tashkeel(text)
     text = re.sub(r"[إأآ]", "ا", text)
     text = re.sub(r"ة", "ه", text)
@@ -16,13 +16,11 @@ def clean_arabic_text(text):
 
 
 def main():
-    """Run cleaner."""
+    """Main."""
     try:
         with open("input.txt", "r", encoding="utf-8") as file:
             user_text = file.read()
-
         result = clean_arabic_text(user_text)
-
         if result and len(result) >= 50:
             print(f"Success! Processed {len(result)} words.")
             print("Cleaned Tokens:", result)
