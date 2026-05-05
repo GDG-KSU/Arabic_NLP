@@ -1,11 +1,10 @@
-import sys
 import re
+import sys
 
 import pyarabic.araby as araby
 
 
 def clean_arabic_text(text):
-    """Clean and tokenize Arabic text."""
     text = araby.strip_tashkeel(text)
     text = re.sub(r"[إأآ]", "ا", text)
     text = re.sub(r"ة", "ه", text)
@@ -16,7 +15,6 @@ def clean_arabic_text(text):
 
 
 def main():
-    """Main function to run the cleaner."""
     try:
         with open("input.txt", "r", encoding="utf-8") as file:
             user_text = file.read()
