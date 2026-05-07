@@ -1,5 +1,5 @@
 # 📖 Annotation & Preprocessing Guidelines
-> **Project:** Arabic NLP Dataset Construction  
+> **Project:** Arabic NLP Dataset  
 > **Phase:** 3 (Dataset)  
 
 ## 1. Introduction
