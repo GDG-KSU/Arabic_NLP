@@ -1,12 +1,11 @@
 import re
 
+import pyarabic.araby as araby
 import requests
 from bs4 import BeautifulSoup
-import pyarabic.araby as araby
 
 
 def clean_arabic_text(text):
-
     text = araby.strip_tashkeel(text)
 
     # Normalizing Letters
@@ -26,7 +25,6 @@ def clean_arabic_text(text):
 
 
 def scrape_arabic_article(url):
-    
     try:
         headers = {'User-Agent': 'Mozilla/5.0'}
         response = requests.get(url, headers=headers, timeout=15)
@@ -40,7 +38,6 @@ def scrape_arabic_article(url):
 
 
 def save_extensive_dataset(url_list, filename="Cleaned_Dataset.txt"):
-    
     with open(filename, mode="w", encoding="utf-8") as file:
         for url in url_list:
             print(f"Scraping: {url}...")
