@@ -26,7 +26,7 @@ def clean_arabic_text(text):
 
 def scrape_arabic_article(url):
     try:
-        headers = {'User-Agent': 'Mozilla/5.0'}
+        headers = {"User-Agent": "Mozilla/5.0"}
         response = requests.get(url, headers=headers, timeout=15)
         response.raise_for_status()
         soup = BeautifulSoup(response.content, "html.parser")
@@ -61,6 +61,6 @@ if __name__ == "__main__":
         "https://ar.wikipedia.org/wiki/معالجة_اللغات_الطبيعية",
         "https://ar.wikipedia.org/wiki/تعلم_آلي",
         "https://ar.wikipedia.org/wiki/لغة_عربية",
-        "https://ar.wikipedia.org/wiki/علم_البيانات"
+        "https://ar.wikipedia.org/wiki/علم_البيانات",
     ]
     save_extensive_dataset(urls)
