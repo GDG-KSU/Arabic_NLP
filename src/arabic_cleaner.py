@@ -17,7 +17,7 @@ def clean_arabic_text(text):
 def main():
     """Main function."""
     try:
-        with open("NLP.txt", "r", encoding="utf-8") as file:
+        with open("data/raw/NLP.txt", "r", encoding="utf-8") as file:
             user_text = file.read()
         result = clean_arabic_text(user_text)
         if result and len(result) >= 50:

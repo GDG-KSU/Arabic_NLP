@@ -42,23 +42,9 @@ To ensure the dataset is ready for Machine Learning tasks, a rigorous cleaning p
     * Unified multi-spaces into a single space and trimmed the text.
 
 ## File Structure
-- `Dataset.py`: The Python engine used for scraping and cleaning.
+- `scraper.py`: The Python engine used for scraping and cleaning.
 - `Cleaned_Dataset.txt`: The final processed text data.
 - `Dataset_README.md`: The official Dataset Card and documentation.
-
-## Technical Setup & Usage
-To replicate this dataset or run the scraper locally, follow these steps:
-
-### 1. Prerequisites
-Ensure you have **Python 3.8+** installed. You will also need the following libraries:
-* `requests`: To fetch the web pages.
-* `beautifulsoup4`: To parse the HTML content.
-* `pyarabic`: To perform Arabic text normalization and cleaning.
-
-### 2. Installation
-Install the required dependencies using pip:
-```bash
-pip install requests beautifulsoup4 pyarabic
 
 ## Author
 **Ghadah Basalasel** *Third-year Information Systems Student at King Saud University* *Dataset Collection & Cleaning Contributor — Arabic NLP Track (m6)* *Robot Programmer & Software Developer*
