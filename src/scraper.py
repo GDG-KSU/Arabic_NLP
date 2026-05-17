@@ -37,7 +37,7 @@ def scrape_arabic_article(url):
         return ""
 
 
-def save_extensive_dataset(url_list, filename="Cleaned_Dataset.txt"):
+def save_extensive_dataset(url_list, filename="data/processed/Cleaned_Dataset.txt"):
     with open(filename, mode="w", encoding="utf-8") as file:
         for url in url_list:
             print(f"Scraping: {url}...")
