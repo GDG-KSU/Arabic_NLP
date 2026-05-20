@@ -1,0 +1,4 @@
+spacy>=3.8
+pyarabic>=0.6
+requests>=2.32
+beautifulsoup4>=4.13
