@@ -1,6 +1,8 @@
 import sys
 from pathlib import Path
+
 from pipeline import build_pipeline, clean_tokens, process
+
 
 # We added input_path and output_path as parameters with default values
 def build_dataset(input_path: Path, output_path: Path):
@@ -35,6 +37,7 @@ def main():
     default_input = Path("data/raw/NLP.txt")
     default_output = Path("data/processed/Cleaned_Dataset.txt")
     build_dataset(default_input, default_output)
+
 
 if __name__ == "__main__":
     main()

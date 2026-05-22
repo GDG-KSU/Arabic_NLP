@@ -1,10 +1,13 @@
 import pytest
 import spacy
+
 from pipeline.filters import clean_tokens
+
 
 @pytest.fixture
 def blank_nlp():
     return spacy.blank("ar")
+
 
 def test_clean_tokens_removes_unwanted_types(blank_nlp):
     # 1. Setup: Create a raw Doc containing one of every type of token
