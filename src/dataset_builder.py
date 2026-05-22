@@ -1,13 +1,9 @@
 import sys
 from pathlib import Path
-
 from pipeline import build_pipeline, clean_tokens, process
 
-
-def main():
-    input_path = Path("data/raw/NLP.txt")
-    output_path = Path("data/processed/Cleaned_Dataset.txt")
-
+# We added input_path and output_path as parameters with default values
+def build_dataset(input_path: Path, output_path: Path):
     if not input_path.exists():
         print(f"Error: Could not find {input_path}")
         sys.exit(1)
@@ -27,7 +23,6 @@ def main():
 
             doc = process(line, nlp)
             tokens = clean_tokens(doc)
-
             cleaned_line = " ".join(tokens)
 
             if cleaned_line:
@@ -35,6 +30,11 @@ def main():
 
     print(f"Success. Cleaned dataset saved to {output_path}")
 
+
+def main():
+    default_input = Path("data/raw/NLP.txt")
+    default_output = Path("data/processed/Cleaned_Dataset.txt")
+    build_dataset(default_input, default_output)
 
 if __name__ == "__main__":
     main()
