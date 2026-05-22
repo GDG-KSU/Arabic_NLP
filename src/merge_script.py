@@ -43,4 +43,3 @@ if data_frames_list:
     print("=" * 40)
 else:
     print("\n❌ No files were merged. Please check the folder path.")
-    
