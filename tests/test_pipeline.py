@@ -1,6 +1,5 @@
-from spacy.tokens import Doc
-
 from pipeline.pipeline import build_pipeline, process
+from spacy.tokens import Doc
 
 
 def test_build_pipeline_assembly():

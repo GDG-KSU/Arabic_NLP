@@ -1,5 +1,4 @@
 import pytest
-
 from pipeline.normalize import normalize_text
 
 

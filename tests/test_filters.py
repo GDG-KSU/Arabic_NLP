@@ -1,6 +1,5 @@
 import pytest
 import spacy
-
 from pipeline.filters import clean_tokens
 
 

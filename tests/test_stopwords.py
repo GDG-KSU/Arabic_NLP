@@ -1,6 +1,5 @@
 import pytest
 import spacy
-
 from pipeline.stopwords import apply_stopwords
 
 
