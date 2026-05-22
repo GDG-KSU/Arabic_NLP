@@ -1,5 +1,3 @@
-
-
 from spacy.lang.ar.stop_words import STOP_WORDS as SPACY_AR_STOPWORDS
 from spacy.language import Language
 

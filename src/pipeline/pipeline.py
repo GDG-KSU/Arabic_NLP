@@ -3,7 +3,10 @@
 import spacy
 from spacy.language import Language
 
-from .normalize import arabic_normalizer, normalize_text  # noqa: F401  (registers component)
+from .normalize import (
+    arabic_normalizer,
+    normalize_text,
+)
 from .stopwords import apply_stopwords
 
 
