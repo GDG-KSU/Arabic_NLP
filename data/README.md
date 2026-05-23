@@ -24,7 +24,8 @@ The goal of this project is to provide a high-quality, preprocessed Arabic corpu
 - **Source:** Arabic Wikipedia.
 - **Topics:** AI, NLP, Machine Learning, Arabic Language, Data Science.
 - **Size Category:** `n<1K` (Small-scale curated dataset).
-- **Format:** Parquet (`.parquet`) - Columnar storage for optimized reading.
+- **Format:** Parquet (`.parquet`). 
+  *Note on Format:* We strictly distribute this dataset via Parquet rather than CSV. Parquet's columnar compression bypasses standard repository file-size limits, loads exponentially faster into Pandas/HuggingFace `datasets`, and eliminates text-parsing errors caused by rogue commas in Arabic text.
 - **Word Count:** ~4300
 
 ## Preprocessing Methodology

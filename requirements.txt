@@ -1,4 +1,18 @@
+# --- NLP Pipeline Core ---
 spacy>=3.8
 pyarabic>=0.6
+
+# --- Data Engineering ---
+pandas
+pyarrow
+
+# --- Web Scraping (Legacy/Scraper) ---
 requests>=2.32
 beautifulsoup4>=4.13
+
+# --- Testing & CI/CD (Dev) ---
+pytest
+black
+flake8
+isort
+mypy
