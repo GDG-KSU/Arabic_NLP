@@ -109,7 +109,7 @@ def main():
     """
     # You can now safely leave the default input as the .csv 
     # The script will handle the conversion automatically on the first run.
-    default_input = Path("data/raw/complete_9700_arabic_dataset.csv")
+    default_input = Path("data/raw/final_hybrid_dataset_10k_cleaned.csv")
     default_output = Path("data/processed/Cleaned_Dataset.parquet")
     build_dataset(default_input, default_output)
 

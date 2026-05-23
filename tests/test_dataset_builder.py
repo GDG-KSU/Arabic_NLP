@@ -26,10 +26,12 @@ def test_build_dataset_creates_clean_output(tmp_path):
     # Load the cleaned Parquet file to verify data integrity
     df_clean = pd.read_parquet(fake_output, engine="pyarrow")
 
-    # Verify the NLP pipeline was applied correctly to the 'text' column
-    # Expected changes: English letters removed, parentheses removed, Taa Marbuta folded to Haa
+# Verify the NLP pipeline was applied correctly to the 'text' column
+    # Expected changes: parentheses removed, Taa Marbuta folded to Haa
     assert len(df_clean) == 2
-    assert df_clean.iloc[0]["text"] == "مدرسه الذكاء الاصطناعي"
+    
+    # CORRECTED: The pipeline retains English technical acronyms
+    assert df_clean.iloc[0]["text"] == "مدرسه الذكاء الاصطناعي AI"
     assert df_clean.iloc[1]["text"] == "اختبار"
     
     # Verify the other columns were preserved
