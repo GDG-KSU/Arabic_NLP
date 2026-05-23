@@ -24,27 +24,34 @@ The goal of this project is to provide a high-quality, preprocessed Arabic corpu
 - **Source:** Arabic Wikipedia.
 - **Topics:** AI, NLP, Machine Learning, Arabic Language, Data Science.
 - **Size Category:** `n<1K` (Small-scale curated dataset).
-- **Format:** Cleaned Plain Text (.txt) encoded in UTF-8.
-- **Word Count:** 4300
+- **Format:** Parquet (`.parquet`). 
+  *Note on Format:* We strictly distribute this dataset via Parquet rather than CSV. Parquet's columnar compression bypasses standard repository file-size limits, loads exponentially faster into Pandas/HuggingFace `datasets`, and eliminates text-parsing errors caused by rogue commas in Arabic text.
+- **Word Count:** ~4300
 
 ## Preprocessing Methodology
-To ensure the dataset is ready for Machine Learning tasks, a rigorous cleaning pipeline was implemented using `PyArabic` and `Regex`:
+To ensure the dataset is ready for Machine Learning tasks, a rigorous, modular cleaning pipeline was implemented using `spaCy`, `PyArabic`, and `Regex`. The data passes through the following orchestrated steps:
 
-1.  **Normalization:**
-    * Unified all ' ا ' forms (أ، إ، آ) into (ا).
-    * Normalized (ة) into (ه).
-2.  **Noise Removal:**
-    * Removed all Latin characters, symbols, and Wikipedia citations.
+1.  **Orthographic Normalization:**
+    * Unified all ' ا ' forms (أ، إ، آ) into bare (ا).
+    * Folded Taa Marbuta (ة) into Haa (ه).
+    * Converted Arabic-Indic digits to standard ASCII digits.
+2.  **Noise & Artifact Removal:**
+    * Removed all Latin characters, English numerals, symbols, and Wikipedia citations.
     * Stripped all URLs and web links.
-3.  **Tashkeel Removal:**
-    * Used `araby.strip_tashkeel` to remove all Arabic diacritics for better model performance.
-4.  **Whitespace Cleaning:**
-    * Unified multi-spaces into a single space and trimmed the text.
+3.  **Tashkeel & Tatweel Removal:**
+    * Used `araby.strip_tashkeel` to remove all Arabic diacritics.
+    * Removed Tatweel (ـ) extension characters.
+4.  **Token Filtering (spaCy):**
+    * Applied custom stopword filtering via the spaCy vocabulary.
+    * Dropped residual punctuation and whitespace tokens.
 
 ## File Structure
-- `scraper.py`: The Python engine used for scraping and cleaning.
-- `Cleaned_Dataset.txt`: The final processed text data.
-- `Dataset_README.md`: The official Dataset Card and documentation.
+The data processing architecture is modularized for CI/CD integration:
+- `data/raw/`: Contains the original scraped text.
+- `data/processed/Cleaned_Dataset.parquet`: The final, optimized dataset.
+- `src/pipeline/`: The custom spaCy NLP package (handles normalization, filtering, and stopwords).
+- `src/dataset_builder.py`: The orchestration script that pushes raw data through the pipeline.
+- `tests/`: Pytest suite ensuring data and pipeline integrity.
 
 ## Author
 **Ghadah Basalasel** *Third-year Information Systems Student at King Saud University* *Dataset Collection & Cleaning Contributor — Arabic NLP Track (m6)* *Robot Programmer & Software Developer*

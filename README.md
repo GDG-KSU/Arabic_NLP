@@ -12,19 +12,15 @@ All our datasets are to be published on [HuggingFace Hub](https://huggingface.co
 - **Community:** The broader HuggingFace and GitHub Arabic tech community.
 
 ## Technical Setup & Usage
-To replicate this dataset or run the scraper locally, follow these steps:
+This repository utilizes a modular, `spaCy`-driven NLP pipeline to ingest raw data, normalize Arabic text, filter stopwords, and output ML-ready Parquet files.
 
 ### 1. Prerequisites
-Ensure you have **Python 3.8+** installed. You will also need the following libraries:
-* `requests`: To fetch the web pages.
-* `beautifulsoup4`: To parse the HTML content.
-* `pyarabic`: To perform Arabic text normalization and cleaning.
+Ensure you have **Python 3.10+** installed. We highly recommend using a Virtual Environment.
 
 ### 2. Installation
-Install the required dependencies using pip:
+Create your virtual environment and install the required dependencies:
 ```bash
-pip install requests beautifulsoup4 pyarabic
+python -m venv venv
+# Activate the venv (Windows: .\venv\Scripts\activate | Mac/Linux: source venv/bin/activate)
+pip install -r requirements.txt
 ```
-
-## License
-This project is licensed under the MIT License - see the [LICENSE](https://github.com/GDG-KSU/Arabic_NLP?tab=Apache-2.0-1-ov-file#) file for details.
