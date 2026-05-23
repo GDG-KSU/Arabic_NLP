@@ -1,27 +1,37 @@
+import pandas as pd
 from dataset_builder import build_dataset
-
 
 # Pytest automatically provides a temporary directory path unique to this test.
 def test_build_dataset_creates_clean_output(tmp_path):
-    # Create fake input and output paths inside the temporary folder
-    fake_input = tmp_path / "fake_raw.txt"
-    fake_output = tmp_path / "fake_clean.txt"
+    # 1. Setup: Create fake Parquet file paths inside the temporary testing folder
+    fake_input = tmp_path / "fake_raw.parquet"
+    fake_output = tmp_path / "fake_clean.parquet"
 
-    # Write some dirty test data into our fake input file
-    fake_input.write_text(
-        "   مدرسة الذكاء الاصطناعي (AI)   \n\n  سطر فارغ", encoding="utf-8"
-    )
+    # Create a dummy dataframe mimicking your actual raw dataset
+    df_raw = pd.DataFrame({
+        "text": ["   مدرسة الذكاء الاصطناعي (AI)   ", "اختبار"],
+        "label": ["tech", "general"],
+        "annotator": ["user1", "user2"]
+    })
+    
+    # Save the dummy data as a Parquet file using pyarrow
+    df_raw.to_parquet(fake_input, engine="pyarrow", index=False)
 
-    # Run the builder using our fake paths
+    # 2. Execution: Run the builder (this will now bypass the .txt block and succeed)
     build_dataset(fake_input, fake_output)
 
-    # Check if the builder successfully created the output file
-    assert fake_output.exists() is True
+    # 3. Assertion: Verify the output file was created
+    assert fake_output.exists()
 
-    # Read the output and check if the pipeline logic was applied
-    results = fake_output.read_text(encoding="utf-8").splitlines()
+    # Load the cleaned Parquet file to verify data integrity
+    df_clean = pd.read_parquet(fake_output, engine="pyarrow")
 
-    # Expected: "مدرسه الذكاء الاصطناعي", empty line skipped, "سطر فارغ"
-    assert len(results) == 2
-    assert "مدرسه" in results[0]  # Taa marbuta folded
-    assert "(AI)" not in results[0]  # English stripped
+    # Verify the NLP pipeline was applied correctly to the 'text' column
+    # Expected changes: English letters removed, parentheses removed, Taa Marbuta folded to Haa
+    assert len(df_clean) == 2
+    assert df_clean.iloc[0]["text"] == "مدرسه الذكاء الاصطناعي"
+    assert df_clean.iloc[1]["text"] == "اختبار"
+    
+    # Verify the other columns were preserved
+    assert "label" in df_clean.columns
+    assert "annotator" in df_clean.columns
